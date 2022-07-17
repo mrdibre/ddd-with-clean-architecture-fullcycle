@@ -39,4 +39,8 @@ export class Product {
   get price() {
     return this._price
   }
+
+  get id() {
+    return this._id
+  }
 }
