@@ -1,4 +1,4 @@
-import { Address } from "./address";
+import { Address } from "../../@shared/value-object/address";
 
 export class Customer {
   get active(): boolean {

@@ -1,5 +1,5 @@
 import { Customer } from "./customer";
-import { Address } from "./address";
+import { Address } from "../../@shared/value-object/address";
 
 describe("Customer unit tests", () => {
   it("Should throw error when id is empty", () => {
