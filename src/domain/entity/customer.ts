@@ -1,6 +1,9 @@
 import { Address } from "./address";
 
 export class Customer {
+  get active(): boolean {
+    return this._active;
+  }
   private _id: string;
   private _name: string;
   private _address!: Address;
@@ -22,13 +25,13 @@ export class Customer {
     }
   }
 
-  set address(address: Address) {
-    this._address = address;
-  }
-
   changeName(name: string) {
     this._name = name;
     this.validate();
+  }
+
+  changeAddress(address: Address) {
+    this._address = address;
   }
 
   activate() {
@@ -61,5 +64,9 @@ export class Customer {
 
   get rewardPoints(): number {
     return this._rewardPoints;
+  }
+
+  get address(): Address {
+    return this._address;
   }
 }

@@ -23,7 +23,7 @@ describe("Customer unit tests", () => {
 
   it("Should activate customer", () => {
     const customer = new Customer("124", "John");
-    customer.address = new Address("Street", 123, "City", "State");
+    customer.changeAddress(new Address("Street", 123, "City", "State"));
     customer.activate();
 
     expect(customer.isActive()).toBe(true);

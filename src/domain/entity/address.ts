@@ -1,8 +1,8 @@
 export class Address {
-  _street: string = "";
-  _number: number = 0;
-  _city: string = "";
-  _zip: string = "";
+  private readonly _street: string = "";
+  private readonly _number: number = 0;
+  private readonly _city: string = "";
+  private readonly _zip: string = "";
 
   constructor(street: string, number: number, city: string, zip: string) {
     this._street = street;
@@ -30,5 +30,22 @@ export class Address {
 
   toString() {
     return `${this._street} ${this._number} ${this._zip} ${this._city}`;
+  }
+
+
+  get street(): string {
+    return this._street;
+  }
+
+  get number(): number {
+    return this._number;
+  }
+
+  get city(): string {
+    return this._city;
+  }
+
+  get zip(): string {
+    return this._zip;
   }
 }
