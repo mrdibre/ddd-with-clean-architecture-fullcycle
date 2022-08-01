@@ -36,7 +36,13 @@ export class CustomerRepository implements CustomerRepositoryInterface {
   }
 
   async find(id: string): Promise<Customer> {
-    const model = await CustomerModel.findOne({ where: { id } });
+    let model;
+
+    try {
+      model = await CustomerModel.findOne({ where: { id }, rejectOnEmpty: true });
+    } catch (e) {
+      throw new Error("Customer not found");
+    }
 
     return CustomerRepository.createCustomerFromModel(model);
   }
