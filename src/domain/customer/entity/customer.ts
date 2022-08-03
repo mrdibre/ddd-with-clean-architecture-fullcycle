@@ -1,6 +1,8 @@
 import { Address } from "../value-object/address";
 import { EntityAbstract } from "../../@shared/entity/entity.abstract";
 import { NotificationError } from "../../@shared/notification/notification-error";
+import { ValidatorInterface } from "../../validator/validator.interface";
+import { CustomerValidatorFactory } from "../factory/customer.validator.factory";
 
 export class Customer extends EntityAbstract {
   private _name: string;
@@ -13,20 +15,15 @@ export class Customer extends EntityAbstract {
 
     this._id = id;
     this._name = name;
-    this.validate()
-  }
-
-  validate() {
-    if (this._id.length === 0) {
-      this.notification.addError({ message: "Id is required" });
-    }
-    if (this._name.length === 0) {
-      this.notification.addError({ message: "Name is required" });
-    }
+    this.validate();
 
     if (this.notification.hasErrors()) {
       throw new NotificationError(this.notification.getErrors(), "customer");
     }
+  }
+
+  validate() {
+    CustomerValidatorFactory.create().validate(this);
   }
 
   changeName(name: string) {
@@ -75,6 +72,6 @@ export class Customer extends EntityAbstract {
   }
 
   get id(): string {
-    return super._id;
+    return this._id;
   }
 }
